@@ -1,0 +1,43 @@
+/* Button SVG icon sizing */
+.btn-primary .btn-content svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+/* Input number spinner hide */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* Smooth transitions for result cards */
+.result-card {
+  transition: all 0.3s ease;
+}
+
+/* Verification progress bar under button */
+.btn-primary.verifying::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  background: var(--accent-gradient);
+  animation: progress 2.5s ease-in-out;
+}
+
+@keyframes progress {
+  from {
+    width: 0%;
+  }
+
+  to {
+    width: 100%;
+  }
+}

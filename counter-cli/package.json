@@ -1,0 +1,70 @@
+{
+  "name": "@eddalabs/counter-cli",
+  "version": "0.1.0",
+  "license": "Apache-2.0",
+  "private": true,
+  "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.js",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "test-undeployed": "vitest run counter.test.ts",
+    "test-preview": "RUN_ENV_TESTS=true TEST_ENV=preview vitest run counter.test.ts",
+    "test-preprod": "RUN_ENV_TESTS=true TEST_ENV=preprod vitest run counter.test.ts",
+    "tui-undeployed": "node --experimental-specifier-resolution=node --loader ts-node/esm src/tui_standalone.ts",
+    "tui-preview": "node --experimental-specifier-resolution=node --loader ts-node/esm src/tui_preview.ts",
+    "tui-preprod": "node --experimental-specifier-resolution=node --loader ts-node/esm src/tui_preprod.ts",
+    "setup-undeployed": "node --experimental-specifier-resolution=node --loader ts-node/esm src/setup/standalone.ts",
+    "ps-undeployed": "docker compose -f ps-undeployed.yml up",
+    "ps-preview": "docker compose -f ps-preview.yml up",
+    "build": "rm -rf dist && tsc --project tsconfig.build.json",
+    "lint": "eslint src",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "private-provider-testing": "vitest run src/test/private-provider.test.ts",
+    "public-provider-testing": "vitest run src/test/public-provider.test.ts",
+    "zk-provider-testing": "vitest run src/test/zk-provider.test.ts",
+    "indexer-client-testing": "vitest run src/test/indexer-client.test.ts",
+    "wallet-testing": "vitest run src/test/wallet.test.ts",
+    "deploy": "node --experimental-specifier-resolution=node --loader ts-node/esm src/deploy.ts"
+  },
+  "dependencies": {
+    "@eddalabs/counter-contract": "*",
+    "@midnight-ntwrk/compact-runtime": "0.14.0",
+    "@midnight-ntwrk/compact-js": "2.4.0",
+    "@midnight-ntwrk/ledger-v7": "7.0.0",
+    "@midnight-ntwrk/midnight-js-contracts": "3.0.0",
+    "@midnight-ntwrk/midnight-js-http-client-proof-provider": "3.0.0",
+    "@midnight-ntwrk/midnight-js-indexer-public-data-provider": "3.0.0",
+    "@midnight-ntwrk/midnight-js-level-private-state-provider": "3.0.0",
+    "@midnight-ntwrk/midnight-js-node-zk-config-provider": "3.0.0",
+    "@midnight-ntwrk/midnight-js-network-id": "3.0.0",
+    "@midnight-ntwrk/midnight-js-types": "3.0.0",
+    "@midnight-ntwrk/midnight-js-utils": "3.0.0",
+    "@midnight-ntwrk/wallet-sdk-unshielded-wallet": "1.0.0",
+    "@midnight-ntwrk/wallet-sdk-shielded": "1.0.0",
+    "@midnight-ntwrk/wallet-sdk-dust-wallet": "1.0.0",
+    "@midnight-ntwrk/wallet-sdk-facade": "1.0.0",
+    "@midnight-ntwrk/wallet-sdk-hd": "3.0.0",
+    "@midnight-ntwrk/wallet-sdk-address-format": "3.0.0",
+    "dotenv": "^16.0.0",
+    "pino": "^8.0.0",
+    "pino-pretty": "^10.0.0",
+    "rxjs": "^7.8.0",
+    "testcontainers": "^10.0.0",
+    "ts-node": "^10.9.0",
+    "ws": "^8.18.3"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/ws": "^8.5.0",
+    "typescript": "^5.0.0"
+  }
+}

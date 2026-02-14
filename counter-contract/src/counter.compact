@@ -1,0 +1,13 @@
+pragma language_version >= 0.20;
+
+import CompactStandardLibrary;
+
+// public state - tracks number of age-verified users
+export ledger round: Counter;
+
+// transition function - called when age verification ZK proof succeeds
+// The ZK age check (birthYear check) happens off-chain in the client
+// Only when the proof passes does the client call this to record verification
+export circuit increment(): [] {
+  round.increment(1);
+}

@@ -1,0 +1,8 @@
+{
+    "name": "midnight-age-verification",
+    "private": true,
+    "workspaces": [
+        "counter-contract",
+        "counter-cli"
+    ]
+}
